@@ -14,6 +14,7 @@ struct Constants {
     
     struct BaseUrl {
         static let baseAPI =  "https://api.themoviedb.org/3/movie"
+        static let imageURL = "https://image.tmdb.org/t/p/w500"
     }
 
     static let pleaseCheckInternetConnection = "Please Check Internet Connection"

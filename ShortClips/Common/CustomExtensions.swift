@@ -6,7 +6,7 @@
 //
 
 import Foundation
-
+import Kingfisher
 
 extension Date {
     
@@ -58,5 +58,22 @@ extension String {
         }
         
         return Date()
+    }
+}
+
+
+extension UIImageView{
+    func downloadImage(url: Resource?,view: UIView) {
+        self.kf.setImage(with: url,
+                         placeholder: nil,
+                         options: [.transition(.fade(0.3)),
+                                   .cacheOriginalImage,
+                                   .forceTransition]) { (_, _) in
+                                       
+                                   } completionHandler: { (_) in
+                                       if let imgPlace = view.subviews.first(where: { $0.layer.name == "placeholder" }) {
+                                           imgPlace.isHidden = true
+                                       }
+                                   }
     }
 }

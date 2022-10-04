@@ -25,7 +25,6 @@ class MovieTableViewCell: UITableViewCell {
         descriptionLabel.text = movies?.overview
         let date = movies?.release_date?.convertStringToDate(actualFormat: DATEFORMATTERS.YYYYMMDD, expectedFormat: DATEFORMATTERS.MMMMDDYYYY)
         dateTimeLabel.text = "Release Date: " + (date?.convertDateToString(actualFormat: DATEFORMATTERS.MMMMDDYYYY, expectedFormat: DATEFORMATTERS.MMMMDDYYYY) ?? "")
-        //let string = "\(Constants.BaseUrl.baseAPI)/\(String(describing: movies?.id))/images?api_key=\(Constants.apiKey)"
         let string = "\(Constants.BaseUrl.imageURL)\(movies?.backdrop_path ?? "")"
         let url = URL(string: string)
         movieImageView.downloadImage(url: url, view: self)

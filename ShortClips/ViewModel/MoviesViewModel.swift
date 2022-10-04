@@ -21,6 +21,7 @@ class MoviesViewModel {
             .responseDecodable(of: MoviesModel.self) { (response) in
                 guard let moviesList = response.value else { return }
                 self.movieListModel = moviesList
+                DatabaseHelper.createMovieData(objects: self.movieListModel?.results ?? [])
                 //print(moviesList.results)
                 completion()
                 

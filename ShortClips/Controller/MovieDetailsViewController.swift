@@ -27,7 +27,9 @@ class MovieDetailsViewController: UIViewController {
         self.navigationItem.title = ScreenTitle.MoviesDetails
         self.lblTitle.text = self.movieDetailsModel?.title
         self.lblDescription.text = self.movieDetailsModel?.overview
-        
+        let string = "\(Constants.BaseUrl.imageURL)\(self.movieDetailsModel?.backdrop_path ?? "")"
+        let url = URL(string: string)
+        imgView.downloadImage(url: url, view: self.view)
     }
     
     

@@ -1,0 +1,6 @@
+framework module Pods_ShortClips {
+  umbrella header "Pods-ShortClips-umbrella.h"
+
+  export *
+  module * { export * }
+}

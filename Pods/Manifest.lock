@@ -1,0 +1,24 @@
+PODS:
+  - Alamofire (5.6.2)
+  - ESPullToRefresh (2.9.3)
+  - Kingfisher (7.3.2)
+
+DEPENDENCIES:
+  - Alamofire
+  - ESPullToRefresh
+  - Kingfisher (~> 7.0)
+
+SPEC REPOS:
+  trunk:
+    - Alamofire
+    - ESPullToRefresh
+    - Kingfisher
+
+SPEC CHECKSUMS:
+  Alamofire: d368e1ff8a298e6dde360e35a3e68e6c610e7204
+  ESPullToRefresh: 0d68daa602b343c81753a1b95e09fd0bfcddfd40
+  Kingfisher: 0086ad83719761ba9b2cdaf6ef4d5b4878cbae23
+
+PODFILE CHECKSUM: e898bea1f15f3e4c8a0b315f60ec8c5fd377c690
+
+COCOAPODS: 1.11.3

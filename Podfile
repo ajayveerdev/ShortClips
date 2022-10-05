@@ -9,4 +9,5 @@ target 'ShortClips' do
 pod 'Alamofire'
 pod "ESPullToRefresh"
 pod 'Kingfisher', '~> 7.0'
+pod "KRProgressHUD"
 end

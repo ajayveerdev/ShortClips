@@ -17,6 +17,7 @@ struct Constants {
         static let imageURL = "https://image.tmdb.org/t/p/w500"
     }
 
+    static let okay = "Okay"
     static let pleaseCheckInternetConnection = "Please Check Internet Connection"
     static let newtworkError = "Network Alert"
     static let noDatatext = "No Data Available"

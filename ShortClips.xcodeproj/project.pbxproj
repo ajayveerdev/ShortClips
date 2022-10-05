@@ -25,6 +25,7 @@
 		FABBEEFA28ECBDFE00B97D5B /* Movies+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABBEEF828ECBDFE00B97D5B /* Movies+CoreDataClass.swift */; };
 		FABBEEFB28ECBDFE00B97D5B /* Movies+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABBEEF928ECBDFE00B97D5B /* Movies+CoreDataProperties.swift */; };
 		FABBEEFF28ECBF4100B97D5B /* DatabaseHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABBEEFE28ECBF4100B97D5B /* DatabaseHelper.swift */; };
+		FABBEF0128EDFA3E00B97D5B /* CommonMethods.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABBEF0028EDFA3E00B97D5B /* CommonMethods.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -50,6 +51,7 @@
 		FABBEEF828ECBDFE00B97D5B /* Movies+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Movies+CoreDataClass.swift"; sourceTree = "<group>"; };
 		FABBEEF928ECBDFE00B97D5B /* Movies+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Movies+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		FABBEEFE28ECBF4100B97D5B /* DatabaseHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseHelper.swift; sourceTree = "<group>"; };
+		FABBEF0028EDFA3E00B97D5B /* CommonMethods.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonMethods.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -167,6 +169,7 @@
 			children = (
 				FABBEE9E28EC4B4200B97D5B /* CustomExtensions.swift */,
 				FABBEEFE28ECBF4100B97D5B /* DatabaseHelper.swift */,
+				FABBEF0028EDFA3E00B97D5B /* CommonMethods.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -301,6 +304,7 @@
 				FABBEEEB28EC7A1D00B97D5B /* MovieDetailsViewController.swift in Sources */,
 				FA69095728EC0EEF00BFA006 /* ViewController.swift in Sources */,
 				FA69095328EC0EEF00BFA006 /* AppDelegate.swift in Sources */,
+				FABBEF0128EDFA3E00B97D5B /* CommonMethods.swift in Sources */,
 				FABBEE9B28EC2BEF00B97D5B /* MovieTableViewCell.swift in Sources */,
 				FABBEE9F28EC4B4200B97D5B /* CustomExtensions.swift in Sources */,
 				FA69097228EC15FF00BFA006 /* MoviesModel.swift in Sources */,

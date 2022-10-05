@@ -30,6 +30,8 @@ extension Movies {
     @NSManaged public var video: Bool
     @NSManaged public var vote_average: Float
     @NSManaged public var vote_count: Int32
+    @NSManaged public var category: String?
+    
 
 }
 

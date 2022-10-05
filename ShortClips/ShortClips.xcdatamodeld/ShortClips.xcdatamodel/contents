@@ -3,6 +3,7 @@
     <entity name="Movies" representedClassName="Movies" syncable="YES">
         <attribute name="adult" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="backdrop_path" optional="YES" attributeType="String"/>
+        <attribute name="category" optional="YES" attributeType="String"/>
         <attribute name="genre_ids" optional="YES" attributeType="Transformable"/>
         <attribute name="id" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="original_language" optional="YES" attributeType="String"/>
@@ -17,6 +18,6 @@
         <attribute name="vote_count" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
     </entity>
     <elements>
-        <element name="Movies" positionX="-63" positionY="-18" width="128" height="239"/>
+        <element name="Movies" positionX="-63" positionY="-18" width="128" height="254"/>
     </elements>
 </model>

@@ -13,7 +13,7 @@ class DatabaseHelper{
     
     static let contex = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer.viewContext
     
-    static func createMovieData(objects: [MoviesResultsModel]){
+    static func createMovieData(category:String, objects: [MoviesResultsModel]){
         
             let movieEntity = NSEntityDescription.entity(forEntityName: "Movies", in: contex!)!
 
@@ -35,6 +35,7 @@ class DatabaseHelper{
                 movie.setValue(item.video, forKeyPath: "video")
                 movie.setValue(item.vote_average, forKeyPath: "vote_average")
                 movie.setValue(item.vote_count, forKeyPath: "vote_count")
+                movie.setValue(category, forKeyPath: "category")
                 
             }
             do {
@@ -45,9 +46,10 @@ class DatabaseHelper{
             }
         }
         
-    static func retrieveMoviesData() -> [Movies] {
+    static func retrieveMoviesData(category:String) -> [Movies] {
         var movies = [Movies]()
            let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Movies")
+           fetchRequest.predicate = NSPredicate(format: "category = %@", category)
            do {
                movies = try contex?.fetch(fetchRequest) as? [Movies] ?? []
            } catch {
@@ -58,10 +60,10 @@ class DatabaseHelper{
        }
     
     
-    static func deleteData(){
+    static func deleteData(category:String){
         var movies = [Movies]()
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Movies")
-        
+        fetchRequest.predicate = NSPredicate(format: "category = %@", category)
         do
         {
             movies = try contex?.fetch(fetchRequest) as? [Movies] ?? []

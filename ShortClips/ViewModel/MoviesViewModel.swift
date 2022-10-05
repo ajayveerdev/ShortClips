@@ -13,7 +13,7 @@ class MoviesViewModel {
     var movieListModel: MoviesModel?
     var moviesDBModel: [Movies]?
     
-    func getAllMovies(category:String, page:Int, completion: @escaping ()->()) {
+    func getAllMovies(category:String, page:Int, segmentIndex:Int, completion: @escaping ()->()) {
         startLoader()
         if Internet.isConnected() == true {
             let url = "\(Constants.BaseUrl.baseAPI)/\(category)?api_key=\(Constants.apiKey)&page=\(page)"
@@ -25,14 +25,19 @@ class MoviesViewModel {
                     self.movieListModel = moviesList
                     
                     if page > 1 {
-                        DatabaseHelper.createMovieData(objects: self.movieListModel?.results ?? [])
+                        DatabaseHelper.createMovieData(category: category, objects: self.movieListModel?.results ?? [])
                     } else{
                         // Delete all and insert and show
-                        DatabaseHelper.deleteData()
-                        DatabaseHelper.createMovieData(objects: self.movieListModel?.results ?? [])
+                        if segmentIndex > 1{
+                            DatabaseHelper.deleteData(category: category)
+                            DatabaseHelper.createMovieData(category: category, objects: self.movieListModel?.results ?? [])
+                        } else{
+                            DatabaseHelper.createMovieData(category: category, objects: self.movieListModel?.results ?? [])
+                        }
+                       
                     }
                     
-                    let movieData = DatabaseHelper.retrieveMoviesData()
+                    let movieData = DatabaseHelper.retrieveMoviesData(category: category)
                     self.moviesDBModel = movieData
                     completion()
                     
@@ -40,7 +45,7 @@ class MoviesViewModel {
             
             
         } else {
-            let movieData = DatabaseHelper.retrieveMoviesData()
+            let movieData = DatabaseHelper.retrieveMoviesData(category: category)
             self.moviesDBModel = movieData
             stopLoader()
             completion()

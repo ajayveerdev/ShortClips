@@ -16,6 +16,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var lblNoData: UILabel!
     
     var pageIndex = 1
+    var segmentIndex = 1
     
     var movieListVM = MoviesViewModel()
     //var movieListModel:[MoviesResultsModel]?
@@ -28,7 +29,7 @@ class ViewController: UIViewController {
     }
     
     func fetchDataWithCategory(category:String, page:Int) {
-        movieListVM.getAllMovies(category: category, page: page) { [weak self] in
+        movieListVM.getAllMovies(category: category, page: page, segmentIndex: self.segmentIndex) { [weak self] in
             
             self?.moviesDBModel = self?.movieListVM.moviesDBModel ?? []
             
@@ -54,6 +55,7 @@ class ViewController: UIViewController {
         self.tblMovieList.es.addPullToRefresh {
             [unowned self] in
             self.pageIndex = 1
+            self.segmentIndex = 2
             self.segmentControlMethod()
         }
         
@@ -71,6 +73,7 @@ class ViewController: UIViewController {
     
     @IBAction func moviesSegmentClicked(_ sender: Any) {
         self.pageIndex = 1
+        self.segmentIndex = 1
         self.moviesDBModel.removeAll()
         self.segmentControlMethod()
     }
@@ -78,13 +81,9 @@ class ViewController: UIViewController {
     func segmentControlMethod(){
         switch movieCategorySegment.selectedSegmentIndex{
         case 0 :
-            print("One")
             self.fetchDataWithCategory(category: EndPoint.popular, page: self.pageIndex)
-            
         case 1:
-            print("Two")
             self.fetchDataWithCategory(category: EndPoint.top_rated, page: self.pageIndex)
-            
         default:
             break
         }

@@ -20,7 +20,7 @@ class MovieTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
     }
     
-    func configure(movies: MoviesResultsModel?) {
+    func configure(movies: Movies?) {
         titleLabel.text = movies?.title
         descriptionLabel.text = movies?.overview
         let date = movies?.release_date?.convertStringToDate(actualFormat: DATEFORMATTERS.YYYYMMDD, expectedFormat: DATEFORMATTERS.MMMMDDYYYY)

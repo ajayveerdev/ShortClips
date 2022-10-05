@@ -7,16 +7,16 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "C7DADAFA-4BC3-469C-AC19-60F0EF713AEB"
+            uuid = "E6AE47E1-A6AC-42F4-8C49-4D4AFAC45D89"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "ShortClips/CustomCells/MovieTableViewCell.swift"
+            filePath = "ShortClips/ViewModel/MoviesViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "28"
-            endingLineNumber = "28"
-            landmarkName = "configure(movies:)"
+            startingLineNumber = "27"
+            endingLineNumber = "27"
+            landmarkName = "getAllMovies(category:page:completion:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

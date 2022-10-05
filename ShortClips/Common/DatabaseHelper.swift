@@ -11,46 +11,78 @@ import CoreData
 
 class DatabaseHelper{
     
+    static let contex = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer.viewContext
+    
     static func createMovieData(objects: [MoviesResultsModel]){
-            
-            //As we know that container is set up in the AppDelegates so we need to refer that container.
-            guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
-            
-            //We need to create a context from this container
-            let managedContext = appDelegate.persistentContainer.viewContext
-            
-            //Now let’s create an entity and new movie records.
-            let userEntity = NSEntityDescription.entity(forEntityName: "Movies", in: managedContext)!
+        
+            let movieEntity = NSEntityDescription.entity(forEntityName: "Movies", in: contex!)!
 
             for item in objects {
                 
-                let user = NSManagedObject(entity: userEntity, insertInto: managedContext)
+                let movie = NSManagedObject(entity: movieEntity, insertInto: contex)
                 
-                user.setValue(item.adult, forKeyPath: "adult")
-                user.setValue(item.backdrop_path, forKeyPath: "backdrop_path")
-                user.setValue(item.genre_ids, forKeyPath: "genre_ids")
-                user.setValue(item.id, forKeyPath: "id")
-                user.setValue(item.original_language, forKeyPath: "original_language")
-                user.setValue(item.original_title, forKeyPath: "original_title")
-                user.setValue(item.overview, forKeyPath: "overview")
-                user.setValue(item.popularity, forKeyPath: "popularity")
-                user.setValue(item.poster_path, forKeyPath: "poster_path")
-                user.setValue(item.release_date, forKeyPath: "release_date")
-                user.setValue(item.title, forKeyPath: "title")
-                user.setValue(item.video, forKeyPath: "video")
-                user.setValue(item.vote_average, forKeyPath: "vote_average")
-                user.setValue(item.vote_count, forKeyPath: "vote_count")
+                movie.setValue(item.adult, forKeyPath: "adult")
+                movie.setValue(item.backdrop_path, forKeyPath: "backdrop_path")
+                movie.setValue(item.genre_ids, forKeyPath: "genre_ids")
+                movie.setValue(item.id, forKeyPath: "id")
+                movie.setValue(item.original_language, forKeyPath: "original_language")
+                movie.setValue(item.original_title, forKeyPath: "original_title")
+                movie.setValue(item.overview, forKeyPath: "overview")
+                movie.setValue(item.popularity, forKeyPath: "popularity")
+                movie.setValue(item.poster_path, forKeyPath: "poster_path")
+                movie.setValue(item.release_date, forKeyPath: "release_date")
+                movie.setValue(item.title, forKeyPath: "title")
+                movie.setValue(item.video, forKeyPath: "video")
+                movie.setValue(item.vote_average, forKeyPath: "vote_average")
+                movie.setValue(item.vote_count, forKeyPath: "vote_count")
                 
             }
-
-            //Now we have set all the values. The next step is to save them inside the Core Data
-            
             do {
-                try managedContext.save()
+                try contex?.save()
                
             } catch let error as NSError {
                 print("Could not save. \(error), \(error.userInfo)")
             }
         }
         
+    static func retrieveMoviesData() -> [Movies] {
+        var movies = [Movies]()
+           let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Movies")
+           do {
+               movies = try contex?.fetch(fetchRequest) as? [Movies] ?? []
+           } catch {
+               
+               print("Failed")
+           }
+        return movies
+       }
+    
+    
+    static func deleteData(){
+        var movies = [Movies]()
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Movies")
+        
+        do
+        {
+            movies = try contex?.fetch(fetchRequest) as? [Movies] ?? []
+            
+            for object in movies {
+                guard let objectData = object as? NSManagedObject else {continue}
+                contex?.delete(objectData)
+            }
+            
+            do{
+                try contex?.save()
+            }
+            catch
+            {
+                print(error)
+            }
+            
+        }
+        catch
+        {
+            print(error)
+        }
+    }
 }

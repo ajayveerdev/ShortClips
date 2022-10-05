@@ -8,6 +8,7 @@
 import UIKit
 import ESPullToRefresh
 
+
 class ViewController: UIViewController {
     
     @IBOutlet weak var movieCategorySegment: UISegmentedControl!
@@ -17,7 +18,8 @@ class ViewController: UIViewController {
     var pageIndex = 1
     
     var movieListVM = MoviesViewModel()
-    var movieListModel:[MoviesResultsModel]?
+    //var movieListModel:[MoviesResultsModel]?
+    var moviesDBModel = [Movies]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,12 +30,7 @@ class ViewController: UIViewController {
     func fetchDataWithCategory(category:String, page:Int) {
         movieListVM.getAllMovies(category: category, page: page) { [weak self] in
             
-            if self?.pageIndex ?? 1 > 1 {
-                self?.movieListModel?.append(contentsOf: self?.movieListVM.movieListModel?.results ?? [])
-            } else{
-                self?.movieListModel?.removeAll()
-                self?.movieListModel = self?.movieListVM.movieListModel?.results
-            }
+            self?.moviesDBModel = self?.movieListVM.moviesDBModel ?? []
             
             DispatchQueue.main.async {
                 self?.tblMovieList.reloadData()
@@ -74,7 +71,7 @@ class ViewController: UIViewController {
     
     @IBAction func moviesSegmentClicked(_ sender: Any) {
         self.pageIndex = 1
-        self.movieListModel?.removeAll()
+        self.moviesDBModel.removeAll()
         self.segmentControlMethod()
     }
     
@@ -99,11 +96,11 @@ class ViewController: UIViewController {
 extension ViewController: UITableViewDelegate, UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return movieListModel?.count ?? 0
+        return moviesDBModel.count
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier:Constants.TableViewCell.movieTableViewCell) as? MovieTableViewCell {
-            cell.configure(movies: movieListModel?[indexPath.row])
+            cell.configure(movies: moviesDBModel[indexPath.row])
             
             return cell
         }
@@ -116,7 +113,7 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
         let movieDetailViewController = storyBoard.instantiateViewController(withIdentifier: Constants.ViewController.movieDetailsViewController) as! MovieDetailsViewController
-        movieDetailViewController.movieDetailsModel =  movieListModel?[indexPath.row]
+        movieDetailViewController.movieDetailsModel =  moviesDBModel[indexPath.row]
         self.navigationController?.pushViewController(movieDetailViewController, animated: true)
     }
     

@@ -11,6 +11,7 @@ import Alamofire
 class MoviesViewModel {
     
     var movieListModel: MoviesModel?
+    var moviesDBModel: [Movies]?
     
     func getAllMovies(category:String, page:Int, completion: @escaping ()->()) {
         startLoader()
@@ -22,16 +23,33 @@ class MoviesViewModel {
                     guard let moviesList = response.value else { return }
                     stopLoader()
                     self.movieListModel = moviesList
-                    DatabaseHelper.createMovieData(objects: self.movieListModel?.results ?? [])
-                    //print(moviesList.results)
+                    
+                    if page > 1 {
+                        DatabaseHelper.createMovieData(objects: self.movieListModel?.results ?? [])
+                    } else{
+                        // Delete all and insert and show
+                        DatabaseHelper.deleteData()
+                        DatabaseHelper.createMovieData(objects: self.movieListModel?.results ?? [])
+                    }
+                    
+                    let movieData = DatabaseHelper.retrieveMoviesData()
+                    self.moviesDBModel = movieData
                     completion()
                     
                 }
+            
+            
         } else {
+            let movieData = DatabaseHelper.retrieveMoviesData()
+            self.moviesDBModel = movieData
+            stopLoader()
+            completion()
             
         }
         
-
+        
         
     }
+    
+    
 }

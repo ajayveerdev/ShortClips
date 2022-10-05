@@ -15,7 +15,7 @@ class MovieDetailsViewController: UIViewController {
     
     @IBOutlet weak var btnWatchTrailer: UIButton!
     
-    var movieDetailsModel:MoviesResultsModel?
+    var movieDetailsModel:Movies?
     
     override func viewDidLoad() {
         super.viewDidLoad()

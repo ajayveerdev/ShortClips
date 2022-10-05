@@ -21,6 +21,7 @@ struct Constants {
     static let pleaseCheckInternetConnection = "Please Check Internet Connection"
     static let newtworkError = "Network Alert"
     static let noDatatext = "No Data Available"
+    static let releaseDate = "Release Date: "
     
     struct TableViewCell {
         static let movieTableViewCell = "MovieTableViewCell"
@@ -50,5 +51,10 @@ struct DATEFORMATTERS {
 struct EndPoint  {
     static let popular = "popular"
     static let top_rated = "top_rated"
-    
+}
+
+// MARK: - Parameter Name
+struct Parameter {
+    static let api_key = "api_key"
+    static let page = "page"
 }

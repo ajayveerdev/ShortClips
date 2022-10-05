@@ -16,7 +16,7 @@ class MoviesViewModel {
     func getAllMovies(category:String, page:Int, segmentIndex:Int, completion: @escaping ()->()) {
         startLoader()
         if Internet.isConnected() == true {
-            let url = "\(Constants.BaseUrl.baseAPI)/\(category)?api_key=\(Constants.apiKey)&page=\(page)"
+            let url = "\(Constants.BaseUrl.baseAPI)/\(category)?\(Parameter.api_key)=\(Constants.apiKey)&\(Parameter.page)=\(page)"
             AF.request(url)
                 .validate()
                 .responseDecodable(of: MoviesModel.self) { (response) in
@@ -34,15 +34,12 @@ class MoviesViewModel {
                         } else{
                             DatabaseHelper.createMovieData(category: category, objects: self.movieListModel?.results ?? [])
                         }
-                       
                     }
                     
                     let movieData = DatabaseHelper.retrieveMoviesData(category: category)
                     self.moviesDBModel = movieData
                     completion()
-                    
                 }
-            
             
         } else {
             let movieData = DatabaseHelper.retrieveMoviesData(category: category)
@@ -51,10 +48,5 @@ class MoviesViewModel {
             completion()
             
         }
-        
-        
-        
     }
-    
-    
 }
